@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+.footer {
+  background-color: black;
+  height: 100%;
+  width: 100px;
+  position: fixed;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}/*# sourceMappingURL=footer.css.map */
