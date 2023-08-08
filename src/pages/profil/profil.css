@@ -1,0 +1,10 @@
+.dashboardBody {
+  width: 100%;
+  display: flex;
+  position: relative;
+  height: 600px;
+}
+.dashboardBody .dashboard {
+  width: 80%;
+  padding: 50px;
+}/*# sourceMappingURL=profil.css.map */

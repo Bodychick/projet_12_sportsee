@@ -5,12 +5,13 @@ function Footer(){
 
 
     return(
-        <footer className='footer'>
+        <aside className='footer'>
             <Icons name='fa-solid fa-table-tennis-paddle-ball' />
             <Icons name='fa-solid fa-person-swimming' />
             <Icons name='fa-solid fa-person-biking' />
             <Icons name='fa-solid fa-dumbbell' />  
-        </footer>
+            <p className='copyright'>copyright</p>
+        </aside>
     );
 }
 

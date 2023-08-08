@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Header from './composant/header/header'
 import Footer from './composant/footer/footer'
+import Profil from './pages/profil/profil';
 
 function App() {
   return (
@@ -8,10 +9,9 @@ function App() {
         <Header />  
           <Router>
               <Routes>
-                 {/*<Route path="/*" element={<NotFound />} />*/} 
+                 {<Route path="/profil" element={<Profil />} />} 
               </Routes>
           </Router>
-        <Footer />
     </div>
   );
 }
