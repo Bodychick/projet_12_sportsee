@@ -15,7 +15,7 @@ function Profil() {
         selectedUser ? (
             <div>
             <h1>
-                Bonjour <span id="prenom">{selectedUser.userInfos.firstName} {selectedUser.userInfos.lastName}</span>
+                Bonjour <span id="prenom">{selectedUser.userInfos.firstName} </span>
             </h1>
             <p>Félicitations, vous avez explosé vos objectifs hier</p>
             <div>

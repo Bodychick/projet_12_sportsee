@@ -7,4 +7,7 @@
 .dashboardBody .dashboard {
   width: 80%;
   padding: 50px;
+}
+.dashboardBody #prenom {
+  color: red;
 }/*# sourceMappingURL=profil.css.map */
