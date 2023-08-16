@@ -3,7 +3,6 @@ import Icons from '../sportsIcon/sportsIcon'
 
 function Footer(){
 
-
     return(
         <aside className='footer'>
             <Icons name='fa-solid fa-table-tennis-paddle-ball' />

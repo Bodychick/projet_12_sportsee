@@ -2,10 +2,31 @@
     width: 100%;
     display: flex;
     position: relative;
-    height: 600px;
+    h1 {
+        font-size: 2em;
+    }
     .dashboard{
-        width: 80%;
-        padding: 50px;
+        width: 90%;
+        margin: auto;
+        .gaph_users{
+            display: flex;
+            flex-wrap: wrap;
+            .graph {
+                width: 80%;
+            }
+        }
+        .recharts-legend-wrapper{
+            justify-content: end;
+        }
+        .infos{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            .graph{
+                width: 80%; 
+            }
+        }
+        
     }
     #prenom{
         color:red

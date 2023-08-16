@@ -32,6 +32,10 @@ body {
 .header ul li {
   cursor: pointer;
 }
+.header ul li a {
+  text-decoration: none;
+  color: white;
+}
 .header ul img {
   width: 80px;
 }/*# sourceMappingURL=header.css.map */

@@ -2,11 +2,31 @@
   width: 100%;
   display: flex;
   position: relative;
-  height: 600px;
+}
+.dashboardBody h1 {
+  font-size: 2em;
 }
 .dashboardBody .dashboard {
+  width: 90%;
+  margin: auto;
+}
+.dashboardBody .dashboard .gaph_users {
+  display: flex;
+  flex-wrap: wrap;
+}
+.dashboardBody .dashboard .gaph_users .graph {
   width: 80%;
-  padding: 50px;
+}
+.dashboardBody .dashboard .recharts-legend-wrapper {
+  justify-content: end;
+}
+.dashboardBody .dashboard .infos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.dashboardBody .dashboard .infos .graph {
+  width: 80%;
 }
 .dashboardBody #prenom {
   color: red;

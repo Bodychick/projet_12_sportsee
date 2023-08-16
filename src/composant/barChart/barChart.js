@@ -20,10 +20,9 @@ class MyBarChart extends PureComponent {
     }
     
     return (
-      <ResponsiveContainer width="100%" aspect={3}>
+      <ResponsiveContainer width="100%" height={500} aspect={3}>
         <BarChart
-          width={500}
-          height={300}
+          height={200}
           data={data} 
           margin={{
             top: 5,
