@@ -1,10 +1,11 @@
 import React from 'react';
-import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS } from '../../data/data'; 
+import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from '../../data/data'; 
 import Footer from '../../composant/footer/footer';
 import '../profil/profil.css';
 import MyBarChart from '../../composant/barChart/barChart'
 import UsersInfo from '../../composant/info-users/info-users';
 import MyAreaChart from '../../composant/areaChart/AreaChart';
+import MyRadarChart from '../../composant/radarChart/radarChat'
 
 
 
@@ -13,7 +14,8 @@ function Profil() {
   const selectedUser = USER_MAIN_DATA.find(user => user.id === parseInt(storedUserId, 10));
   const userActivity = USER_ACTIVITY.find(user => user.userId === parseInt(storedUserId,10)).sessions;
   const userSession = USER_AVERAGE_SESSIONS.find(user => user.userId === parseInt(storedUserId,10)).sessions;
-  console.log(userSession);
+  const userIntensity = USER_PERFORMANCE.find(user => user.userId === parseInt(storedUserId,10))
+  console.log(userIntensity);
 
   return (
     <section className="dashboardBody">
@@ -31,7 +33,8 @@ function Profil() {
             <div className='gaph_users'>
               <section className='graph'>
                 <MyBarChart data={userActivity} />
-                <div style={{width:"300px",height:"300px",backgroundColor:"red"}}><MyAreaChart data={userSession}/></div>
+                <MyAreaChart data={userSession}/>
+                <MyRadarChart data={userIntensity}/>
               </section>
               <section className='userInfos'>
                 <UsersInfo icon="fa-solid fa-fire" value={selectedUser.keyData.calorieCount} sousTitre="Calories" unite="kCal" color="pink"/>

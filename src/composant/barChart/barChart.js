@@ -20,9 +20,9 @@ class MyBarChart extends PureComponent {
     }
     
     return (
-      <ResponsiveContainer width="100%" height={500} aspect={3}>
+      <div style={{ width: '80%', height: '400px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
+      <ResponsiveContainer width="100%" height="100%" aspect={3}>
         <BarChart
-          height={200}
           data={data} 
           margin={{
             top: 5,
@@ -55,6 +55,7 @@ class MyBarChart extends PureComponent {
           <Bar dataKey="kilogram" fill="black" barSize={10} radius={20}/>
         </BarChart>
       </ResponsiveContainer>
+      </div>
     );
   }
 }

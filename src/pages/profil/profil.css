@@ -16,6 +16,9 @@
 }
 .dashboardBody .dashboard .gaph_users .graph {
   width: 80%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 .dashboardBody .dashboard .recharts-legend-wrapper {
   justify-content: end;

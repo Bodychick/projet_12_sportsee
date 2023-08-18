@@ -1,33 +1,45 @@
 import React, { PureComponent } from 'react';
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-
+import { AreaChart, Area, XAxis,Legend, Tooltip, ResponsiveContainer } from 'recharts';
+import "./areaChart.css"
 
 
 class MyAreaChart extends PureComponent {
 
   render() {
     const { data } = this.props;
-    
+    const formatJour = (day) => {
+      const daysOfWeek = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
+      if(day-1<0){
+        return daysOfWeek[day];
+      }
+      return daysOfWeek[day - 1];
+    };
+
+    const CustomTooltip = ({ active, payload }) => {
+      if (active && payload && payload.length) {
+        return (
+          <div className="custom-tooltip-area-chart">
+            <p className="label">{`${payload[0].value} min`}</p>
+          </div>
+        );
+      }
+  }
+
     return (
-      <ResponsiveContainer width={400} height={400} aspect={1.5} >
-        <AreaChart
-          width={400}
-          height={400}
-          data={data}
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="day" />
-          <YAxis />
-          <Tooltip />
-          <Area type="monotone" dataKey="sessionLength" stroke="#FFFFFF" fill="red" />
-        </AreaChart>
-      </ResponsiveContainer>
+      <div style={{ width: '300px', height: '300px', backgroundColor: 'red', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
+        <ResponsiveContainer width="90%" height="90%">
+          <AreaChart
+            data={data}
+            margin="auto"
+            borderRadius="20px"
+          >
+            <XAxis dataKey="day" tickFormatter={formatJour} align="center" verticalAlign="bottom" stroke="white" />
+            <Tooltip content={<CustomTooltip />} />
+            <Area type="monotone" dataKey="sessionLength" stroke="#FFFFFF" fill="red" />
+            <Legend verticalAlign="top" height={36} wrapperStyle={{ paddingTop: 10, color: 'white' }} />
+          </AreaChart>
+        </ResponsiveContainer>
+    </div>
     );
   }
 }
