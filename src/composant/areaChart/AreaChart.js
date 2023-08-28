@@ -1,47 +1,80 @@
-import React, { PureComponent } from 'react';
-import { AreaChart, Area, XAxis,Legend, Tooltip, ResponsiveContainer } from 'recharts';
-import "./areaChart.css"
+import React from "react";
+import styled from "styled-components";
+import { LineChart, Line, Tooltip, XAxis, ResponsiveContainer } from 'recharts';
 
 
-class MyAreaChart extends PureComponent {
+export default function ChartLine({data}) {
 
-  render() {
-    const { data } = this.props;
-    const formatJour = (day) => {
-      const daysOfWeek = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-      if(day-1<0){
-        return daysOfWeek[day];
-      }
-      return daysOfWeek[day - 1];
-    };
+	return (
+    <div style={{ width: '300px', height: '300px', backgroundColor: 'red', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'30px'}} >
+      <CustomLine>
+        <div className="title">
+          Durée moyenne des sessions
+        </div>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={data} margin={{ bottom: 10 }} >
+            <Line type="monotone" dataKey="sessionLength" stroke="#FFFFFF"
+              strokeWidth={2.5} dot={false}
+            />
 
-    const CustomTooltip = ({ active, payload }) => {
-      if (active && payload && payload.length) {
-        return (
-          <div className="custom-tooltip-area-chart">
-            <p className="label">{`${payload[0].value} min`}</p>
-          </div>
-        );
-      }
-  }
+            <XAxis dataKey="sessionLength" />
 
-    return (
-      <div style={{ width: '300px', height: '300px', backgroundColor: 'red', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
-        <ResponsiveContainer width="90%" height="90%">
-          <AreaChart
-            data={data}
-            margin="auto"
-            borderRadius="20px"
-          >
-            <XAxis dataKey="day" tickFormatter={formatJour} align="center" verticalAlign="bottom" stroke="white" />
-            <Tooltip content={<CustomTooltip />} />
-            <Area type="monotone" dataKey="sessionLength" stroke="#FFFFFF" fill="red" />
-            <Legend verticalAlign="top" height={36} wrapperStyle={{ paddingTop: 10, color: 'white' }} />
-          </AreaChart>
+            <Tooltip cursor={false}
+              wrapperStyle={{ outline: "none", fontWeight: 600 }}
+              labelFormatter={value => `${value} min`}
+            />
+
+          </LineChart>
         </ResponsiveContainer>
+        <div className="legend">
+          <p>L</p>
+          <p>M</p>
+          <p>M</p>
+          <p>J</p>
+          <p>V</p>
+          <p>S</p>
+          <p>D</p>
+        </div>
+      </CustomLine>
     </div>
-    );
-  }
+	)
 }
 
-export default MyAreaChart;
+
+const CustomLine = styled.div`
+		display:flex;
+		flex-direction: column;
+		position:relative;
+		background: red; 
+		border-radius: 5px;
+		
+		height: 263px;
+		min-width: 240px;
+		opacity: 0.9;
+		font-size: 12px; 
+
+
+
+		.title {
+			color: white;
+			font-weight: 600;
+			padding-top: 30px;
+			padding-left: 30px;
+			font-size: 15px;
+			max-width: 200px;
+			line-height: 24px;
+		}
+
+	
+		.legend { 
+      color:white;
+			display: flex;
+			padding-bottom: 25px;
+			justify-content: space-between;	
+		}
+
+
+		.recharts-tooltip-item-list,.xAxis {
+			display: none;
+		}
+`; 

@@ -6,6 +6,7 @@ import MyBarChart from '../../composant/barChart/barChart'
 import UsersInfo from '../../composant/info-users/info-users';
 import MyAreaChart from '../../composant/areaChart/AreaChart';
 import MyRadarChart from '../../composant/radarChart/radarChat'
+import ChartScore from '../../composant/scoreChart/scoreChart';
 
 
 
@@ -14,8 +15,15 @@ function Profil() {
   const selectedUser = USER_MAIN_DATA.find(user => user.id === parseInt(storedUserId, 10));
   const userActivity = USER_ACTIVITY.find(user => user.userId === parseInt(storedUserId,10)).sessions;
   const userSession = USER_AVERAGE_SESSIONS.find(user => user.userId === parseInt(storedUserId,10)).sessions;
-  const userIntensity = USER_PERFORMANCE.find(user => user.userId === parseInt(storedUserId,10))
-  console.log(userIntensity);
+  const userIntensity = USER_PERFORMANCE.find(user => user.userId === parseInt(storedUserId,10));
+  let score = 0;
+
+  if(selectedUser.score == null){
+     score = selectedUser.todayScore;
+  }
+  else {
+     score = selectedUser.score;
+  }
 
   return (
     <section className="dashboardBody">
@@ -23,7 +31,7 @@ function Profil() {
       
       {
         selectedUser ? (
-          //Info utilisateurs
+          //Info utilisateurs 
           <section className="dashboard">
             <h1>
                   Bonjour <span id="prenom">{selectedUser.userInfos.firstName} </span>
@@ -35,16 +43,15 @@ function Profil() {
                 <MyBarChart data={userActivity} />
                 <MyAreaChart data={userSession}/>
                 <MyRadarChart data={userIntensity}/>
+                <ChartScore score={score} />
               </section>
               <section className='userInfos'>
-                <UsersInfo icon="fa-solid fa-fire" value={selectedUser.keyData.calorieCount} sousTitre="Calories" unite="kCal" color="pink"/>
-                <UsersInfo icon="fa-solid fa-fire" value={selectedUser.keyData.proteinCount} sousTitre="Protéines" unite="g" color="#4AB8FF1A"/>
-                <UsersInfo icon="fa-solid fa-fire" value={selectedUser.keyData.carbohydrateCount} sousTitre="Glucides" unite="g" color="#F9CE23"/>
-                <UsersInfo icon="fa-solid fa-fire" value={selectedUser.keyData.lipidCount} sousTitre="Lipides" unite="g" color="#FD51811A"/>                
+                <UsersInfo icon="fa-solid fa-fire" value={selectedUser.keyData.calorieCount} sousTitre="Calories" unite="kCal" color="rgba(255, 0, 0, 1)" colorBackground="rgba(255, 0, 0, 0.1)"/>
+                <UsersInfo icon="fa-solid fa-drumstick-bite" value={selectedUser.keyData.proteinCount} sousTitre="Protéines" unite="g" color="rgba(74, 184, 255, 1)" colorBackground="rgba(74, 184, 255, 0.1)"/>
+                <UsersInfo icon="fa-brands fa-apple" value={selectedUser.keyData.carbohydrateCount} sousTitre="Glucides" unite="g" color="rgba(249, 206, 35, 1)" colorBackground="rgba(249, 206, 35, 0.1)"/>
+                <UsersInfo icon="fa-solid fa-burger" value={selectedUser.keyData.lipidCount} sousTitre="Lipides" unite="g" color="rgba(253, 81, 129, 1)" colorBackground="rgba(253, 81, 129, 0.1)"/>                
               </section>
-            </div>
-
-            
+            </div>        
           </section>
 
         ) : (

@@ -5,3 +5,33 @@
     font-weight: 600;
     font-size: 0.90em;
 }
+
+.flex-head { 
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;	
+    padding-bottom: 30px;
+    
+}
+.text-chart {
+    font-size: 15px; 
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    .legend { 
+        margin-right: 10px;
+        font-size: 14px;
+        
+        &:before {
+             display: inline-flex;
+            content: "";
+            width: 8px;
+            height: 8px;
+            margin-right: 10px;
+            border-radius: 5px;
+            background-color: black;
+            
+        }         
+    }    
+}
