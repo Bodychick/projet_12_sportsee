@@ -40,10 +40,15 @@ function Profil() {
 
             <div className='gaph_users'>
               <section className='graph'>
-                <MyBarChart data={userActivity} />
-                <MyAreaChart data={userSession}/>
-                <MyRadarChart data={userIntensity}/>
-                <ChartScore score={score} />
+                <div className='graph__haut'>
+                  <MyBarChart data={userActivity} />
+                </div>
+                <div className='graph__bas'>
+                  <MyAreaChart data={userSession}/>
+                  <MyRadarChart data={userIntensity}/>
+                  <ChartScore score={score} />
+                </div>
+                
               </section>
               <section className='userInfos'>
                 <UsersInfo icon="fa-solid fa-fire" value={selectedUser.keyData.calorieCount} sousTitre="Calories" unite="kCal" color="rgba(255, 0, 0, 1)" colorBackground="rgba(255, 0, 0, 0.1)"/>
@@ -60,11 +65,6 @@ function Profil() {
         )
         }
         
-      
-      <section>
-        <div className="columnGraph"></div>
-        <div className="columnRight"></div>
-      </section>
     </section>
   );
 }

@@ -1,24 +1,36 @@
 .dashboardBody {
-  width: 100%;
+  min-width: 1024px;
+  min-height: 720px;
   display: flex;
   position: relative;
 }
 .dashboardBody h1 {
   font-size: 2em;
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
 .dashboardBody .dashboard {
   width: 90%;
-  margin: auto;
+  margin: 10px auto auto auto;
+  box-sizing: border-box;
 }
 .dashboardBody .dashboard .gaph_users {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
+  width: 100%;
 }
 .dashboardBody .dashboard .gaph_users .graph {
-  width: 80%;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   flex-wrap: wrap;
+  width: 75%;
+}
+.dashboardBody .dashboard .gaph_users .graph .graph__bas {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 .dashboardBody .dashboard .recharts-legend-wrapper {
   justify-content: end;

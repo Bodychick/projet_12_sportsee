@@ -11,7 +11,7 @@ function CustomTick(props) {
   // Obtenir le jour
   const day = date.getDate();
 
-  return <text x={x} y={y} dy={16} textAnchor="middle" style={{color:'gray'}} >{day}</text>;
+  return <text x={x} y={y} dy={16} textAnchor="middle" style={{color:'gray', fontSize:"10px"}} >{day}</text>;
 }
 
 class MyBarChart extends PureComponent {
@@ -30,12 +30,12 @@ class MyBarChart extends PureComponent {
     }
     
     return (
-      <div style={{ width: '80%', height: '400px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
-        <ResponsiveContainer width="100%" height="100%" aspect={3}>
+      <div style={{ width: '80%', height: '250px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', backgroundColor:"#F4F6F6",padding:"20px",marginBottom:"10px"}}>
+        <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="2 2" horizontal={true}
               vertical={false} />
-            <XAxis dataKey="day" tick={<CustomTick />} axisLine={false} tickLine={false} />
+            <XAxis dataKey="day" axisLine={false} tickLine={false} tick={<CustomTick />}/>
             <YAxis orientation="right" axisLine={false} tickLine={false} />
 
             <Tooltip
@@ -44,8 +44,10 @@ class MyBarChart extends PureComponent {
               content={<CustomTooltip />}
             />
             <Legend 
+            height={"40px"}
             align="right" 
             verticalAlign="top"
+            margin={{bottom:"20px"}}
             payload={[
                 {
                   value: 'Poids (kg)',
@@ -58,13 +60,13 @@ class MyBarChart extends PureComponent {
                   color: 'red',
                 },
               ]}
-              />
+            />
             <Bar dataKey="kilogram" name="kg" fill="black" radius={[10, 10, 0, 0]}
               barSize={10} />
             <Bar dataKey="calories" name="kCal" fill="red" radius={[10, 10, 0, 0]}
               barSize={10} />
           </BarChart>
-        </ResponsiveContainer>
+			  </ResponsiveContainer>
       </div>
     );
   }

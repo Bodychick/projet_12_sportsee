@@ -17,7 +17,7 @@ export default function ChartScore({ score }) {
 
 	console.log(score);
 	return (
-        <div style={{ width: '300px', height: '300px', backgroundColor: 'white', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
+        <div style={{ width: '28%', height: '300px', backgroundColor: 'white', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
             <CustomScore>
                 <div className="title">Score</div>
 
@@ -66,11 +66,7 @@ const CustomScore = styled.div`
 			position: absolute;
 			margin-top: 24px;
 			margin-left: 24px;
-
-			color: ${({ theme }) => theme.colorFont ? theme.colorFont : theme.colorPrimary};
-			font-family: ${({ theme }) => theme.fontFamily};
 			font-size: 15px; 
-			font-weight: ${({ theme }) => theme.fontWeight + 200};
 		}
 
 
@@ -90,22 +86,14 @@ const CustomScore = styled.div`
 			transform: translate(-50%, -50%);
 			border-radius: 50%;
 			z-index: -1;
-			background-color: ${({ theme }) => theme.bgColor};
 
-			.percentage { 
-				font-family: ${({ theme }) => theme.fontFamily};
+			.percentage {
 				font-size: 26px; 
-				font-weight: ${({ theme }) => theme.fontWeight + 200};
-				color: ${({ theme }) => theme.colorFont ? theme.colorFont : theme.colorPrimary};
 			}
 
 			
 			.message { 
-				
-				font-family: ${({ theme }) => theme.fontFamily};
 				font-size: 16px; 
-				font-weight: ${({ theme }) => theme.fontWeight + 100};
-				color: ${({ theme }) => theme.colorFont ? theme.colorFont : theme.colorPrimary};
 				opacity: 0.6;
 			}
 		}

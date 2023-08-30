@@ -1,5 +1,5 @@
 .userInfos {
-  width: 18%;
+  width: 20%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -7,6 +7,8 @@
 .userInfos .infos {
   display: flex;
   flex-wrap: wrap;
+  background-color: #F4F6F6;
+  padding: 10px 5px;
 }
 .userInfos .infos .icon {
   padding: 0;
@@ -16,8 +18,8 @@
   align-items: center;
 }
 .userInfos .infos .icon i {
-  font-size: 20px;
-  padding: 25px;
+  font-size: 16px;
+  padding: 20px;
 }
 .userInfos .infos :first-child {
   display: flex;

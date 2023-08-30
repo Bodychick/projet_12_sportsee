@@ -14,7 +14,7 @@ export default class MyRadarChart extends PureComponent {
         const polarGrid = false;
 
       return (
-        <div style={{ width: '300px', height: '300px', backgroundColor: '#282D30', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'center'}} >
+        <div style={{ width: '28%', height: '300px', backgroundColor: '#282D30', borderRadius:'20px', display: 'flex',padding:"20px", justifyContent: 'center', alignItems: 'center'}} >
             <ResponsiveContainer width="100%" height="100%">
                 <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data.data}>
                     <PolarGrid radialLines={polarGrid}/>

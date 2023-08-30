@@ -6,7 +6,7 @@ import { LineChart, Line, Tooltip, XAxis, ResponsiveContainer } from 'recharts';
 export default function ChartLine({data}) {
 
 	return (
-    <div style={{ width: '300px', height: '300px', backgroundColor: 'red', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'30px'}} >
+    <div style={{ width: '30%', height: '300px', backgroundColor: 'red', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'30px'}} >
       <CustomLine>
         <div className="title">
           Durée moyenne des sessions
@@ -47,9 +47,8 @@ const CustomLine = styled.div`
 		position:relative;
 		background: red; 
 		border-radius: 5px;
-		
-		height: 263px;
-		min-width: 240px;
+		width:100%;
+		height: 300px;
 		opacity: 0.9;
 		font-size: 12px; 
 
