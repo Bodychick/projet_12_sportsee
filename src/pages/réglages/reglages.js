@@ -4,8 +4,21 @@ import { USER_MAIN_DATA } from '../../data/data';
 import Footer from '../../composant/footer/footer'
 import '../profil/profil.css'
 
+
 function Reglages() {
   const [selectedUser, setSelectedUser] = useState(null);
+  const [isOn, setIsOn] = useState(() => {
+    const savedState = localStorage.getItem('isOn');
+    return savedState ? JSON.parse(savedState) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('isOn', JSON.stringify(isOn));
+  }, [isOn]);
+
+  const handleToggle = () => {
+    setIsOn(prevState => !prevState);
+  };
 
   useEffect(() => {
     const storedUserId = localStorage.getItem('selectedUserId');
@@ -35,11 +48,23 @@ function Reglages() {
         ))}
       </select>
 
+
+
       {selectedUser ? (
         <Link to="/profil">Voir le profil</Link> 
       ): <div></div>
       }
+
+      <div>
+        <label className="switch">
+          <input type="checkbox" checked={isOn} onChange={handleToggle} />
+          <span className="slider round"></span>
+        </label>
+        <p>Switch is {isOn ? 'Les données proviennent de l\'API' : 'Les données sont moquées'}</p>
+      </div>
+
       </section>
+
     </section>
   );
 }
