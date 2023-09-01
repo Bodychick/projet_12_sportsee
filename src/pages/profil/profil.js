@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from '../../data/data'; 
 import Footer from '../../composant/footer/footer';
 import '../profil/profil.css';
@@ -7,15 +7,57 @@ import UsersInfo from '../../composant/info-users/info-users';
 import MyAreaChart from '../../composant/areaChart/AreaChart';
 import MyRadarChart from '../../composant/radarChart/radarChat'
 import ChartScore from '../../composant/scoreChart/scoreChart';
+import {getUserAverageSession, getUserActivity, getUserPerformance, getUserMainData} from '../../services/api'
 
 
 
 function Profil() {
   const storedUserId = localStorage.getItem('selectedUserId');
+  const storeDataIsOn = localStorage.getItem('isOn');
+  console.log(storeDataIsOn);
+
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    // Vérifiez si isOn est true avant d'appeler fetchUserData
+    if (storeDataIsOn === 'true') {
+      async function fetchUserData() {
+        try {
+          const dataTest = await getUserMainData(storedUserId);
+          setUserData(dataTest);
+        } catch (error) {
+          console.error('Erreur lors de la récupération des données utilisateur', error);
+        }
+      }
+      fetchUserData();
+    }
+  }, [storedUserId, storeDataIsOn]); 
+
+  if (userData==null){
+   //Mocke les données
+    
+  } else {
+    //On prend les données de l'API
+  }
+  console.log(userData)
+
+  /*if(storeDataIsOn) {
+    const selectedUser = getUserMainData(storedUserId);
+    const userActivity = getUserActivity(storedUserId);
+    const userSession = getUserAverageSession(storedUserId);
+    const userIntensity = getUserPerformance(storedUserId);
+  } else {
+    const selectedUser = USER_MAIN_DATA.find(user => user.id === parseInt(storedUserId, 10));
+    const userActivity = USER_ACTIVITY.find(user => user.userId === parseInt(storedUserId,10)).sessions;
+    const userSession = USER_AVERAGE_SESSIONS.find(user => user.userId === parseInt(storedUserId,10)).sessions;
+    const userIntensity = USER_PERFORMANCE.find(user => user.userId === parseInt(storedUserId,10));
+  }*/
+
   const selectedUser = USER_MAIN_DATA.find(user => user.id === parseInt(storedUserId, 10));
   const userActivity = USER_ACTIVITY.find(user => user.userId === parseInt(storedUserId,10)).sessions;
   const userSession = USER_AVERAGE_SESSIONS.find(user => user.userId === parseInt(storedUserId,10)).sessions;
-  const userIntensity = USER_PERFORMANCE.find(user => user.userId === parseInt(storedUserId,10));
+  const userIntensity = USER_PERFORMANCE.find(user => user.userId === parseInt(storedUserId,10))
+
   let score = 0;
 
   if(selectedUser.score == null){
