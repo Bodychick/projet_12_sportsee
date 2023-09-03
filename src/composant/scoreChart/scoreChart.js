@@ -2,12 +2,6 @@ import React from "react";
 import styled from 'styled-components'
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
-/**
- * @param score as a number between 0.00 & 1.00
- * @example <ChartScore score={0.12} />
- * @returns A component who display a Chart Score Radial with %
- */
-
 export default function ChartScore({ score }) {
 
 

@@ -4,6 +4,7 @@ import { LineChart, Line, Tooltip, XAxis, ResponsiveContainer } from 'recharts';
 
 
 export default function ChartLine({data}) {
+  console.log(data)
 
 	return (
     <div style={{ width: '30%', height: '300px', backgroundColor: 'red', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'30px'}} >

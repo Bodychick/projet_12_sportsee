@@ -1,10 +1,8 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from 'recharts';
 
-export default class MyRadarChart extends PureComponent {
+export default function MyRadarChart({data}){
 
-    render() {
-        const { data } = this.props;
         console.log(data);
 
         const formatKind = (kind) => {
@@ -13,6 +11,11 @@ export default class MyRadarChart extends PureComponent {
 
         const polarGrid = false;
 
+        if (!data) {
+          // Gérez le cas où data est null ou non défini, par exemple, en affichant un message d'erreur ou en rendant un composant vide.
+          return <div>Données non disponibles</div>;
+        }
+        
       return (
         <div style={{ width: '28%', height: '300px', backgroundColor: '#282D30', borderRadius:'20px', display: 'flex',padding:"20px", justifyContent: 'center', alignItems: 'center'}} >
             <ResponsiveContainer width="100%" height="100%">
@@ -24,5 +27,4 @@ export default class MyRadarChart extends PureComponent {
             </ResponsiveContainer>
         </div>
       );
-    }
   }
