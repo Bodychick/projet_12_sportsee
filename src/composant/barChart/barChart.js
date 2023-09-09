@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, Tooltip, ResponsiveContainer } from 'recharts';
 import './barChart.css'
+import { USER_ACTIVITY} from '../../data/data'; 
+
 
 function CustomTick(props) {
   const { x, y, payload } = props;
@@ -15,10 +17,36 @@ function CustomTick(props) {
 }
 
 class MyBarChart extends PureComponent {
-  render() {
-    const { data } = this.props;
 
-    const CustomTooltip = ({ active, payload, label }) => {
+  constructor(props) {
+    super(props)
+    this.state = {
+        data: {},
+    }
+  }
+
+  componentDidMount() {
+    const { id, storeDataIsOn } = this.props;
+
+    if (storeDataIsOn) {
+      // Fetch les données depuis l'API si storeDataIsOn est true
+      fetch(`http://localhost:3000/user/${id}/activity`)
+        .then((response) => response.json())
+        .then((jsonResponse) => {
+          this.setState({ data: jsonResponse?.data.sessions });
+        });
+    } else {
+      // Utilisez les données depuis USER_ACTIVITY si storeDataIsOn est false
+      this.setState({ data: USER_ACTIVITY.sessions });
+    }
+  }
+
+
+  render() {
+    const { data } = this.state;
+    //const {day, kilograms, calories} = data
+
+    const CustomTooltip = ({ active, payload }) => {
         if (active && payload && payload.length) {
           return (
             <div className="custom-tooltip">
@@ -27,6 +55,11 @@ class MyBarChart extends PureComponent {
             </div>
           );
         }
+    }
+
+    if (!data) {
+      // Gérez le cas où data est null ou non défini, par exemple, en affichant un message d'erreur ou en rendant un composant vide.
+      return <div>Données non disponibles</div>;
     }
     
     return (
@@ -73,3 +106,5 @@ class MyBarChart extends PureComponent {
 }
 
 export default MyBarChart;
+
+

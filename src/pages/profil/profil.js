@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from '../../data/data'; 
+import { USER_MAIN_DATA } from '../../data/data'; 
 import Footer from '../../composant/footer/footer';
 import '../profil/profil.css';
 import MyBarChart from '../../composant/barChart/barChart'
@@ -7,7 +7,7 @@ import UsersInfo from '../../composant/info-users/info-users';
 import MyAreaChart from '../../composant/areaChart/AreaChart';
 import MyRadarChart from '../../composant/radarChart/radarChat'
 import ChartScore from '../../composant/scoreChart/scoreChart';
-import {getUserAverageSession, getUserActivity, getUserPerformance, getUserMainData} from '../../services/api'
+import {getUserMainData} from '../../services/api'
 
 function Profil() {
   const storedUserId = localStorage.getItem('selectedUserId');
@@ -16,12 +16,6 @@ function Profil() {
   console.log(storeDataIsOn);
 
   const [userData, setUserData] = useState(null);
-  const [userActivityFetch, setUserActivity] = useState(null);
-  const [userAverageSessions, setUserAverageSessions] = useState(null);
-  const [userPeformance, setUserPeformance] = useState(null);
-
-  const test = USER_PERFORMANCE.find(user => user.userId === parseInt(storedUserId, 10));
-  console.log(test)
 
   useEffect(() => {
     // Vérifiez si isOn est true avant d'appeler fetchUserData
@@ -37,85 +31,30 @@ function Profil() {
       fetchUserDataMainData();
     }
   }, [storedUserId, storeDataIsOn]); 
-
-  useEffect(() => {
-    // Vérifiez si isOn est true avant d'appeler fetchUserData
-    if (storeDataIsOn === 'true') {
-      async function fetchUserDataAverageSession() {
-        try {
-          const userAverage = await getUserAverageSession(storedUserId);
-          setUserAverageSessions(userAverage.data.sessions); // Assurez-vous d'extraire les données correctement
-        } catch (error) {
-          console.error('Erreur lors de la récupération des données utilisateur', error);
-        }
-      }
-      fetchUserDataAverageSession();
-    }
-  }, [storedUserId, storeDataIsOn]);
   
-  useEffect(() => {
-    // Vérifiez si isOn est true avant d'appeler fetchUserData
-    if (storeDataIsOn === 'true') {
-      async function fetchUserDataActivity() {
-        try {
-          const userActivity1 = await getUserActivity(storedUserId);
-          setUserActivity(userActivity1.data.sessions); // Assurez-vous d'extraire les données correctement
-        } catch (error) {
-          console.error('Erreur lors de la récupération des données utilisateur', error);
-        }
-      }
-      fetchUserDataActivity();
-    }
-  }, [storedUserId, storeDataIsOn]); 
-  
-
-  
-  useEffect(() => {
-    // Vérifiez si isOn est true avant d'appeler fetchUserData
-    if (storeDataIsOn === 'true') {
-      async function fetchUserDataPerformance() {
-        try {
-          const userPerf = await getUserPerformance(storedUserId);
-          console.log(userPerf.data);
-
-          if (userPerf && userPerf.data) {
-            // Assurez-vous que userActivityResponse et userActivityResponse.data ne sont pas nuls
-            setUserPeformance(userPerf.data);
-          }
-           // Assurez-vous d'extraire les données correctement
-        } catch (error) {
-          console.error('Erreur lors de la récupération des données utilisateur', error);
-        }
-      }
-      fetchUserDataPerformance();
-    }
-  }, [storedUserId, storeDataIsOn]);
 
   // Initialisez les variables pour stocker les données en fonction de storeDataIsOn
-  let selectedUser, userActivity, userSession, userIntensity, score;
+  let selectedUser;
 
-  if (storeDataIsOn === "true") {
+  if (storeDataIsOn === "true" && userData ) {
     // Utilisez les données de l'API
     selectedUser = userData; 
-    userActivity = userActivityFetch;
-    userSession = userAverageSessions;
-    userIntensity = userPeformance;
-    console.log(userIntensity);
     isAPI = true;
-  } else {
+  } else if (storeDataIsOn === "true" && !userData) {
+    return (
+      <section className="dashboardBody">
+        <h1>Vérifiez la connexion à l'API ou changer la provenance des informations dans les réglages</h1>
+      </section>
+    )
+  }
+  else if(storeDataIsOn === "false"){
     // Mockez les données
     selectedUser = USER_MAIN_DATA.find(user => user.id === parseInt(storedUserId, 10));
-    userActivity = USER_ACTIVITY.find(user => user.userId === parseInt(storedUserId, 10)).sessions;
-    userSession = USER_AVERAGE_SESSIONS.find(user => user.userId === parseInt(storedUserId, 10)).sessions;
-    userIntensity = USER_PERFORMANCE.find(user => user.userId === parseInt(storedUserId, 10));
-    console.log(userIntensity)
     isAPI = false;
   }
 
-  console.log(userIntensity);
-  console.log(userPeformance);
   // Initialisation du score score en fonction de selectedUser
-  score = selectedUser ? (selectedUser.score != null ? selectedUser.score : selectedUser.todayScore) : 0;
+  //score = selectedUser ? (selectedUser.score != null ? selectedUser.score : selectedUser.todayScore) : 0;
 
   return (
     <section className="dashboardBody">
@@ -132,12 +71,12 @@ function Profil() {
           <div className='gaph_users'>
             <section className='graph'>
               <div className='graph__haut'>
-                <MyBarChart data={userActivity} />
+                <MyBarChart id={storedUserId} storeDataIsOn={storeDataIsOn}/>
               </div>
               <div className='graph__bas'>
-                <MyAreaChart data={userSession}/>
-                <MyRadarChart data={userIntensity}/>
-                <ChartScore score={score} />
+                <MyAreaChart id={storedUserId} storeDataIsOn={storeDataIsOn}/>
+                <MyRadarChart id={storedUserId} storeDataIsOn={storeDataIsOn}/>
+                <ChartScore id={storedUserId} storeDataIsOn={storeDataIsOn}/>
               </div>
             </section>
             <section className='userInfos'>

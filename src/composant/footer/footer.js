@@ -9,7 +9,7 @@ function Footer(){
             <Icons name='fa-solid fa-person-swimming' />
             <Icons name='fa-solid fa-person-biking' />
             <Icons name='fa-solid fa-dumbbell' />  
-            <p className='copyright'>copyright</p>
+            <p className='copyright'>Copyright SportSee 2020</p>
         </aside>
     );
 }
