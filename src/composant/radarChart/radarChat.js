@@ -15,7 +15,7 @@ class MyRadarChart extends PureComponent {
   componentDidMount() {
     const { id, storeDataIsOn } = this.props;
 
-    if (storeDataIsOn) {
+    if (storeDataIsOn === true) {
       // Fetch les données depuis l'API si storeDataIsOn est true
       fetch(`http://localhost:3000/user/${id}/performance`)
         .then((response) => response.json())
@@ -24,7 +24,8 @@ class MyRadarChart extends PureComponent {
         });
     } else {
       // Utilisez les données depuis USER_ACTIVITY si storeDataIsOn est false
-      this.setState({ data: USER_PERFORMANCE});
+      const data2 = USER_PERFORMANCE.find(user => user.userId === parseInt(id,10));
+      this.setState({ data: data2});
   }
 }
   
@@ -48,9 +49,9 @@ class MyRadarChart extends PureComponent {
     }
     
     return (
-      <div style={{ width: '28%', height: '300px', backgroundColor: '#282D30', borderRadius:'20px', display: 'flex',padding:"20px", justifyContent: 'center', alignItems: 'center'}} >
+      <div style={{ width: '28%', height: '250px', backgroundColor: '#282D30', borderRadius:'20px', display: 'flex',padding:"5px", justifyContent: 'center', alignItems: 'center'}} >
           <ResponsiveContainer width="100%" height="100%">
-              <RadarChart cx="50%" cy="50%" outerRadius="65%" data={data.data}>
+              <RadarChart cx="50%" cy="50%" outerRadius="50%" data={data.data}>
                   <PolarGrid radialLines={polarGrid}/>
                   <PolarAngleAxis dataKey="kind" tickFormatter={formatKind} fontSize={13}/>
                   <Radar name="performance" dataKey="value" stroke="red" fill="red" fillOpacity={0.6} />

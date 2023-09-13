@@ -15,7 +15,7 @@ class ChartScore extends PureComponent {
 	componentDidMount() {
 	  const { id, storeDataIsOn } = this.props;
   
-	  if (storeDataIsOn) {
+	  if (storeDataIsOn === true) {
 		// Fetch les données depuis l'API si storeDataIsOn est true
 		fetch(`http://localhost:3000/user/${id}/`)
 		  .then((response) => response.json())
@@ -25,7 +25,8 @@ class ChartScore extends PureComponent {
 		  });
 	  } else {
 		// Utilisez les données depuis USER_ACTIVITY si storeDataIsOn est false
-		this.setState({ data: USER_MAIN_DATA.sessions });
+		let data2 = USER_MAIN_DATA.find(user => user.id === parseInt(id, 10));
+		this.setState({ data: data2 });
 	  }
 	  console.log(this.data)
 	}
@@ -46,7 +47,7 @@ class ChartScore extends PureComponent {
 
 	console.log(score);
 	return (
-        <div style={{ width: '28%', height: '300px', backgroundColor: 'white', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
+        <div style={{ width: '28%', height: '250px', backgroundColor: 'white', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
             <CustomScore>
                 <div className="title">Score</div>
 

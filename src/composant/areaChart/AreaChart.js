@@ -16,7 +16,7 @@ class ChartLine extends PureComponent {
   componentDidMount() {
     const { id, storeDataIsOn } = this.props;
 
-    if (storeDataIsOn) {
+    if (storeDataIsOn === true) {
       // Fetch les données depuis l'API si storeDataIsOn est true
       fetch(`http://localhost:3000/user/${id}/average-sessions`)
         .then((response) => response.json())
@@ -25,7 +25,8 @@ class ChartLine extends PureComponent {
         });
     } else {
       // Utilisez les données depuis USER_ACTIVITY si storeDataIsOn est false
-      this.setState({ data: USER_AVERAGE_SESSIONS.sessions });
+      const data2 = USER_AVERAGE_SESSIONS.find(user => user.userId === parseInt(id,10)).sessions;
+      this.setState({ data: data2 });
     }
   }
   
@@ -37,7 +38,7 @@ class ChartLine extends PureComponent {
     }
   
     return (
-      <div style={{ width: '30%', height: '300px', backgroundColor: 'red', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'30px'}} >
+      <div style={{ width: '30%', height: '250px', backgroundColor: 'red', borderRadius:'20px', display: 'flex', justifyContent: 'center', alignItems: 'center', padding:'30px'}} >
         <CustomLine>
           <div className="title">
             Durée moyenne des sessions
@@ -77,14 +78,10 @@ const CustomLine = styled.div`
 		display:flex;
 		flex-direction: column;
 		position:relative;
-		background: red; 
 		border-radius: 5px;
 		width:100%;
-		height: 300px;
-		opacity: 0.9;
+    height : 250px;
 		font-size: 12px; 
-
-
 
 		.title {
 			color: white;
@@ -95,7 +92,6 @@ const CustomLine = styled.div`
 			max-width: 200px;
 			line-height: 24px;
 		}
-
 	
 		.legend { 
       color:white;
@@ -103,7 +99,6 @@ const CustomLine = styled.div`
 			padding-bottom: 25px;
 			justify-content: space-between;	
 		}
-
 
 		.recharts-tooltip-item-list,.xAxis {
 			display: none;

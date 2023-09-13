@@ -9,6 +9,9 @@
   margin-top: 7px;
   margin-bottom: 7px;
 }
+.dashboardBody .intro {
+  padding-left: 30px;
+}
 .dashboardBody .dashboard {
   width: 90%;
   margin: 10px auto auto auto;

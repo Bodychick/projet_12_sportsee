@@ -27,20 +27,23 @@ class MyBarChart extends PureComponent {
 
   componentDidMount() {
     const { id, storeDataIsOn } = this.props;
-
-    if (storeDataIsOn) {
+    console.log(storeDataIsOn)
+    console.log(id)
+    if (storeDataIsOn === true) {
       // Fetch les données depuis l'API si storeDataIsOn est true
       fetch(`http://localhost:3000/user/${id}/activity`)
         .then((response) => response.json())
         .then((jsonResponse) => {
           this.setState({ data: jsonResponse?.data.sessions });
         });
+        console.log("je passe ici")
     } else {
       // Utilisez les données depuis USER_ACTIVITY si storeDataIsOn est false
-      this.setState({ data: USER_ACTIVITY.sessions });
+      let data2 = USER_ACTIVITY.find(user => user.userId === parseInt(id,10)).sessions;
+      this.setState({ data: data2 });
+      console.log(data2)
     }
   }
-
 
   render() {
     const { data } = this.state;
@@ -63,7 +66,8 @@ class MyBarChart extends PureComponent {
     }
     
     return (
-      <div style={{ width: '80%', height: '250px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', backgroundColor:"#F4F6F6",padding:"20px",marginBottom:"10px"}}>
+      <div style={{ width: '90%', height: '250px', display: 'flex', position:"relative", justifyContent: 'center', alignItems: 'flex-start', backgroundColor:"#F4F6F6",padding:"20px",marginBottom:"10px",borderRadius:"8px"}}>
+        <p className='soustitre'>Activité Quotidienne</p>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="2 2" horizontal={true}

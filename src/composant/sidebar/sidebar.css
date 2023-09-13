@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-.footer {
+.sidebar {
   height: calc(100vh - 80px);
   background-color: black;
   width: 100px;
@@ -15,11 +15,12 @@
   justify-content: center;
   align-items: center;
 }
-.footer .copyright {
+.sidebar .copyright {
+  font-size: 12px;
   position: absolute;
   writing-mode: vertical-rl;
   text-orientation: mixed;
   bottom: 100px;
   color: white;
   transform: rotate(180deg);
-}/*# sourceMappingURL=footer.css.map */
+}/*# sourceMappingURL=sidebar.css.map */

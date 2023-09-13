@@ -12,7 +12,7 @@ function UsersInfo(props){
         <div className='infos'>
             <div className='icon' style={{backgroundColor:colorBackground}}><i className={icon} style={{color:color}}></i></div>
             <div className='infos-texte'>
-                <p>{value}{unite}</p>
+                <p className="titre">{value}{unite}</p>
                 <p className='sous-titre'>{sousTitre}</p>
             </div>
         </div>

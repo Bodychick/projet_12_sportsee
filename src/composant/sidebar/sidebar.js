@@ -1,10 +1,10 @@
-import '../footer/footer.css'
+import './sidebar.css'
 import Icons from '../sportsIcon/sportsIcon'
 
 function Footer(){
 
     return(
-        <aside className='footer'>
+        <aside className='sidebar'>
             <Icons name='fa-solid fa-table-tennis-paddle-ball' />
             <Icons name='fa-solid fa-person-swimming' />
             <Icons name='fa-solid fa-person-biking' />

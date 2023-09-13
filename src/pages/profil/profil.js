@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { USER_MAIN_DATA } from '../../data/data'; 
-import Footer from '../../composant/footer/footer';
+import Footer from '../../composant/sidebar/sidebar';
 import '../profil/profil.css';
 import MyBarChart from '../../composant/barChart/barChart'
 import UsersInfo from '../../composant/info-users/info-users';
@@ -63,10 +63,10 @@ function Profil() {
       {selectedUser ? (
         // Info utilisateurs 
         <section className="dashboard">
-          <h1>
+          <h1 className="intro">
             Bonjour <span id="prenom">{selectedUser.userInfos.firstName} </span>
           </h1>
-          <p>Félicitations, vous avez explosé vos objectifs hier. { isAPI ? "Provenant de l'API" : "Par fichier"}</p>
+          <p className='intro'>Félicitations, vous avez explosé vos objectifs hier. { isAPI ? "Provenant de l'API" : "Par fichier"}</p>
 
           <div className='gaph_users'>
             <section className='graph'>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { USER_MAIN_DATA } from '../../data/data'; 
-import Footer from '../../composant/footer/footer'
+import Footer from '../../composant/sidebar/sidebar'
 import '../profil/profil.css'
 
 
