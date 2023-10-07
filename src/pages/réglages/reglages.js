@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { USER_MAIN_DATA } from '../../data/data'; 
-import Footer from '../../composant/sidebar/sidebar'
+import Sidebar from '../../composant/sidebar/sidebar'
 import '../profil/profil.css'
 
 
@@ -35,7 +35,7 @@ function Reglages() {
 
   return (
     <section className="dashboardBody">
-      <Footer />
+      <Sidebar />
       <section className="dashboard">
       <h1>Réglages</h1>
       <label htmlFor="selectUser">Sélectionnez un utilisateur :</label>

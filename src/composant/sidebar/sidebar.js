@@ -1,7 +1,7 @@
 import './sidebar.css'
 import Icons from '../sportsIcon/sportsIcon'
 
-function Footer(){
+function Sidebar(){
 
     return(
         <aside className='sidebar'>
@@ -14,4 +14,4 @@ function Footer(){
     );
 }
 
-export default Footer
+export default Sidebar
